@@ -20,21 +20,24 @@ import com.pillar.kata.interfaces.WritingUtinsil;
  */
 class WritingUtensilTest {
 
+	private Media paper;
+	private WritingUtinsil pencil;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+		paper = new Paper();
+		pencil = new Pencil();
 	}
 
 	@Test
 	void testPencilWriteToMedia() {
-		Media paper = new Paper();
-		WritingUtinsil pencil = new Pencil();
 		
-		String expected = "This is a test 1.";
+		String expected = "She sells sea shells";
 		
-		paper = pencil.write(paper, "This is a test 1.");		
+		paper = pencil.write(paper, "She sells sea shells");		
 		String actual = paper.getContent();
 				
 		assertEquals(expected, actual, "TestPencilWriteToMedia Failed");
@@ -42,9 +45,7 @@ class WritingUtensilTest {
 	
 	@Test
 	void testPencilWriteToMedia2() {
-		Media paper = new Paper();
-		WritingUtinsil pencil = new Pencil();
-		
+				
 		String expected = "This is a test 2.";
 		
 		paper = pencil.write(paper, "This is a test 2.");		
