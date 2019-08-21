@@ -12,16 +12,28 @@ import com.pillar.kata.interfaces.Media;
  */
 public class Paper implements Media {
 
-	private String content;
+	/*
+	 * Not using a String builder because there's is no
+	 * requirement for thread synchronization as in a collaboration type application.
+	 */
+	private StringBuffer content;
+		
+	/*
+	 * Default constructor to create the StringBuffer object
+	 */
+	public Paper() {
+		super();
+		this.content = new StringBuffer();
+	}
 
 	@Override
 	public String getContent() {
-		return this.content;
+		return this.content.toString();
 	}
 
 	@Override
 	public void setContent(String content) {
-		this.content = content;	
+		this.content.append(content);	
 	}
 
 }

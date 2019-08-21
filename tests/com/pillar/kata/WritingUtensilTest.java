@@ -52,6 +52,18 @@ class WritingUtensilTest {
 		String actual = paper.getContent();
 				
 		assertEquals(expected, actual, "TestPencilWriteToMedia2 Failed");
-	}	
+	}
+	
+	@Test
+	void testPencilWriteAppendToMedia() {
+				
+		String expected = "She sells sea shells down by the sea shore";
+		
+		paper = pencil.write(paper, "She sells sea shells");	
+		paper = pencil.write(paper, " down by the sea shore");		
+		String actual = paper.getContent();
+				
+		assertEquals(expected, actual, "TestPencilWriteToMedia2 Failed");
+	}		
 
 }
