@@ -15,7 +15,7 @@ public class Paper implements Media {
 	@Override
 	public String getContent() {
 		// TODO Auto-generated method stub
-		return null;
+		return "This is a test 1.";
 	}
 
 }

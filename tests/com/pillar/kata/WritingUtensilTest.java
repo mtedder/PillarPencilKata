@@ -32,12 +32,12 @@ class WritingUtensilTest {
 		Media paper = new Paper();
 		WritingUtinsil pencil = new Pencil();
 		
-		String expected = "This is a test.";
-		paper = pencil.write(paper, "This is a test.");
+		String expected = "This is a test 1.";
 		
+		paper = pencil.write(paper, "This is a test 1.");		
 		String actual = paper.getContent();
-		
-		assertEquals("TestPencilWriteToMedia Failed", expected, actual);
+				
+		assertEquals(expected, actual, "TestPencilWriteToMedia Failed");
 	}
 
 }

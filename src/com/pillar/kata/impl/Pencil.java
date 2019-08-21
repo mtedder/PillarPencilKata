@@ -15,7 +15,7 @@ public class Pencil implements WritingUtinsil {
 	@Override
 	public Media write(Media paper, String string) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Paper();
 	}
 
 }
