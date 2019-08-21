@@ -12,10 +12,16 @@ import com.pillar.kata.interfaces.Media;
  */
 public class Paper implements Media {
 
+	private String content;
+
 	@Override
 	public String getContent() {
-		// TODO Auto-generated method stub
-		return "This is a test 1.";
+		return this.content;
+	}
+
+	@Override
+	public void setContent(String content) {
+		this.content = content;	
 	}
 
 }
