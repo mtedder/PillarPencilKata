@@ -18,4 +18,9 @@ public class Pencil implements WritingUtinsil {
 		return paper;
 	}
 
+	@Override
+	public void setPointDurability(int i) {
+		// TODO Auto-generated method stub
+	}
+
 }
