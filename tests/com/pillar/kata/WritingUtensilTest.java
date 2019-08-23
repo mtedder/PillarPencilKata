@@ -44,7 +44,7 @@ class WritingUtensilTest {
 	}
 	
 	@Test
-	void testPencilWriteToMedia2() {
+	void testPencilWriteToMediaWithNonLetters() {
 				
 		String expected = "This is a test 2.";
 		
@@ -90,6 +90,23 @@ class WritingUtensilTest {
 		String actual = paper.getContent();
 				
 		assertEquals(expected, actual, "testPencilWritePointDurabilityDeficitLowerCase Failed");
-	}		
+	}
+	
+	/*
+	 * This test is also covered in the testPencilWriteAppendToMedia case
+	 * but added here for robustness.
+	 */
+	@Test
+	void testPencilWritePointDurabilitySurplusLowerCase() {
+				
+		String expected = "testing";
+		
+		pencil.setPointDurability(100);
+		
+		paper = pencil.write(paper, "testing");	
+		String actual = paper.getContent();
+				
+		assertEquals(expected, actual, "testPencilWritePointDurabilitySurplusLowerCase Failed");
+	}	
 
 }
