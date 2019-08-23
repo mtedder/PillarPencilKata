@@ -77,6 +77,19 @@ class WritingUtensilTest {
 		String actual = paper.getContent();
 				
 		assertEquals(expected, actual, "testPencilWritePointDurabilityBreakEvenLowerCase Failed");
-	}	
+	}
+	
+	@Test
+	void testPencilWritePointDurabilityDeficitLowerCase() {
+				
+		String expected = "tes ";
+		
+		pencil.setPointDurability(3);
+		
+		paper = pencil.write(paper, "test");	
+		String actual = paper.getContent();
+				
+		assertEquals(expected, actual, "testPencilWritePointDurabilityDeficitLowerCase Failed");
+	}		
 
 }
