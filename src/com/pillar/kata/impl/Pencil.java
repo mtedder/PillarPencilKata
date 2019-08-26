@@ -70,48 +70,39 @@ public class Pencil implements WritingUtinsil {
 		//Lower case count - ignore space & punctuation
 		Pattern pLower = Pattern.compile("[a-z&&[^\\s]]");// or \p{Lower}
 		Matcher mLower = pLower.matcher(content);
-//		int lowerCaseCount = 0;
-//		while(mLower.find()) {
-//			System.out.println(mLower.toString());
-//			lowerCaseCount++;
-//		}
 		
 		//Upper case count - ignore space & punctuation
 		Pattern pUpper = Pattern.compile("[A-Z&&[^\\s]]");// or \p{Upper}
 		Matcher mUpper = pUpper.matcher(content);
-//		int upperCaseCount = 0;
-//		while(mUpper.find()) {
-//			upperCaseCount++;
-//		}
 		
 		//Spaces in content/input count
 		Pattern pSpace = Pattern.compile("\\s");//
 		Matcher mSpace = pSpace.matcher(content);
-//		int contentSpaceCount = 0;
-//		while(mSpace.find()) {
-//			contentSpaceCount++;
-//		}
+
 		
 		//numbers & punctuation in content/input count
 		Pattern pNonLtrs = Pattern.compile("[\\p{Digit}\\p{Punct}]");//
 		Matcher mNonLtrs = pNonLtrs.matcher(content);
-//		int otherContentCount = 0;
-//		while(mNonLtrs.find()) {
-//			otherContentCount++;
-//		}		
-		
+			
 		char output;
-		for(int i=0; i < content.length(); i++) {
-			boolean isMatch = mLower.find(i);
+//		for(int i=0; i < content.length(); i++) {
+		for(char ch: content.toCharArray()) {
+//			boolean isMatch = mLower.find(i);
+//			boolean isSpaceMatch = mSpace.find(i);
+			boolean isMatch = Pattern.matches("[a-z&&[^\\s]]", String.valueOf(ch));
+			boolean isSpaceMatch  = Pattern.matches("\\s",  String.valueOf(ch));
+			
 			int letterCost = 0;
 			if(isMatch) {//lowecase
 				letterCost = LOWER_CASE_COST;
-			}else {//non-lowercase
+			}else if(isSpaceMatch){//space of newline
+				//use default
+			}else {//non-lowercase or non-space or non-newline
 				letterCost = UPPER_CASE_COST;
 			}
 			
 			if(pointDurability >= letterCost) {
-				output = content.charAt(i);
+				output = ch;
 			}else {//not enough pointDurability - print space
 				output = NO_POINT_CHAR;
 			}
