@@ -146,8 +146,10 @@ public class Pencil implements WritingUtinsil {
 
 	@Override
 	public void sharpen() {
-		length--;
-		pointDurabilityCount= 0;//restore durability
+		length = Math.max(0, --length);//negative values not allowed
+		if(length > 0) {
+			pointDurabilityCount= 0;//restore durability
+		}
 	}
 
 	/**
