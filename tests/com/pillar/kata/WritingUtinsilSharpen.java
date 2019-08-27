@@ -40,6 +40,25 @@ class WritingUtinsilSharpen {
 		assertEquals(expectedLength, actualLength, "testPencilUnSharpenStandard Failed");
 		assertEquals(expectedDurability, actualDurability, "testPencilUnSharpenStandard Failed");
 	}
+	
+	@Test
+	void testPencilSharpenStandard() {
+		
+		Pencil pencil = new Pencil(100, 100);//initial length & durability
+		
+		int expectedLength = 99;
+		int expectedDurability = 100;//restored value
+		
+		pencil.setPointDurabilityCount(50);//depleted durability
+		
+		pencil.sharpen();
+		
+		int actualLength = pencil.getLength();
+		int actualDurability = pencil.getPointDurability();
+				
+		assertEquals(expectedLength, actualLength, "testPencilSharpenStandard Failed");
+		assertEquals(expectedDurability, actualDurability, "testPencilSharpenStandard Failed");
+	}
 
 	/*
 	 * Don't forget cross dependency test
