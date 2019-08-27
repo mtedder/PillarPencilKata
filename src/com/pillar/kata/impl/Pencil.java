@@ -20,6 +20,25 @@ public class Pencil implements WritingUtinsil {
 	private static final int LOWER_CASE_COST = 1;
 	private static final int UPPER_CASE_COST = 2;
 	private static final char NO_POINT_CHAR = ' ';
+	private int length;
+
+	
+	/**
+	 * 
+	 */
+	public Pencil() {
+		super();
+		this.pointDurabilityCount = 0;
+	}
+
+	/*
+	 * 
+	 */
+	public Pencil(int length, int durability) {
+		this.length = length;
+		this.pointDurability = durability;
+		this.pointDurabilityCount = 0;
+	}
 
 	//for testing code snippets
 	public static void main(String[] args) {
@@ -59,6 +78,7 @@ public class Pencil implements WritingUtinsil {
 	 * durability of pencil point as it writes- lowercase = -1, uppercase = -2
 	 */
 	private int pointDurability=Integer.MAX_VALUE;
+	private int pointDurabilityCount;
 
 	@Override
 	public Media write(Media paper, String content) {
@@ -92,22 +112,22 @@ public class Pencil implements WritingUtinsil {
 			boolean isMatch = Pattern.matches("[a-z&&[^\\s]]", String.valueOf(ch));
 			boolean isSpaceMatch  = Pattern.matches("\\s",  String.valueOf(ch));
 			
-			int letterCost = 0;
+			pointDurabilityCount = 0;
 			if(isMatch) {//lowecase
-				letterCost = LOWER_CASE_COST;
+				pointDurabilityCount += LOWER_CASE_COST;
 			}else if(isSpaceMatch){//space of newline
 				//use default
 			}else {//non-lowercase or non-space or non-newline
-				letterCost = UPPER_CASE_COST;
+				pointDurabilityCount += UPPER_CASE_COST;
 			}
 			
-			if(pointDurability >= letterCost) {
+			if(pointDurability >= pointDurabilityCount) {
 				output = ch;
 			}else {//not enough pointDurability - print space
 				output = NO_POINT_CHAR;
 			}
 			
-			pointDurability -= letterCost;
+			pointDurability -= pointDurabilityCount;
 			paper.setContent(String.valueOf(output));
 		}
 		return paper;
@@ -118,4 +138,44 @@ public class Pencil implements WritingUtinsil {
 		this.pointDurability = pointDurability;
 	}
 
+	@Override
+	public int getPointDurability() {
+		int result = pointDurability - pointDurabilityCount;
+		return result;
+	}
+
+	@Override
+	public void sharpen() {
+		length--;
+		pointDurabilityCount= 0;//restore durability
+	}
+
+	/**
+	 * @return the length
+	 */
+	public int getLength() {
+		return length;
+	}
+
+	/**
+	 * @param length the length to set
+	 */
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	/**
+	 * @return the pointDurabilityCount
+	 */
+	public int getPointDurabilityCount() {
+		return pointDurabilityCount;
+	}
+
+	/**
+	 * @param pointDurabilityCount the pointDurabilityCount to set
+	 */
+	public void setPointDurabilityCount(int pointDurabilityCount) {
+		this.pointDurabilityCount = pointDurabilityCount;
+	}
+		
 }
