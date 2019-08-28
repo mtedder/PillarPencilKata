@@ -42,5 +42,23 @@ class WritingUtinsilEraseTest {
 				
 		assertEquals(expected, actual, "testPencilEraseStandard Failed");
 	}
+	
+	@Test
+	void testPencilEraseSameWordTwice() {
+		
+		Media paper = new Paper();
+		WritingUtinsil pencil = new Pencil();
+		
+		String expected = "How much wood would a woodchuck chuck if a wood      could       wood?";
+		
+		paper = pencil.write(paper, "How much wood would a woodchuck chuck if a woodchuck could chuck wood?");	
+			
+		paper = pencil.erase(paper, "chuck");
+		paper = pencil.erase(paper, "chuck");
+		
+		String actual = paper.getContent();
+				
+		assertEquals(expected, actual, "testPencilEraseSameWordTwice Failed");
+	}	
 
 }

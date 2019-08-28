@@ -193,7 +193,6 @@ public class Pencil implements WritingUtinsil {
 		Arrays.fill(replacementWord, NO_POINT_CHAR);//create replacement empty space string
 		
 		StringBuffer sbResult = sb.replace(startIndex, endIndex, String.valueOf(replacementWord));
-		System.out.println(sbResult.toString());
 		
 		//Create new paper object with new content
 		paper = new Paper();
