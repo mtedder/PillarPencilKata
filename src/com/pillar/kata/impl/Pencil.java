@@ -179,5 +179,27 @@ public class Pencil implements WritingUtinsil {
 	public void setPointDurabilityCount(int pointDurabilityCount) {
 		this.pointDurabilityCount = pointDurabilityCount;
 	}
+
+	@Override
+	public Media erase(Media paper, String word) {
+		
+		StringBuffer sb = new StringBuffer(paper.getContent());
+		//find last occurrence of word in String
+		int startIndex = sb.lastIndexOf(word);
+		int endIndex = startIndex + word.length();
+		
+		char[] replacementWord = new char[word.length()];
+		
+		Arrays.fill(replacementWord, NO_POINT_CHAR);//create replacement empty space string
+		
+		StringBuffer sbResult = sb.replace(startIndex, endIndex, String.valueOf(replacementWord));
+		System.out.println(sbResult.toString());
+		
+		//Create new paper object with new content
+		paper = new Paper();
+		paper.setContent(sbResult.toString());
+		
+		return paper;
+	}
 		
 }

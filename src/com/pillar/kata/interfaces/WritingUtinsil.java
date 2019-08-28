@@ -69,4 +69,20 @@ public interface WritingUtinsil {
 	
 	int getLength();
 
+	/*
+	 * As a writer I want to be able to erase previously written text so that I can
+	 * remove my mistakes
+	 * 
+	 * When the pencil is instructed to erase text from the paper, the last
+	 * occurrence of that text on the paper will be replaced with empty spaces.
+	 * 
+	 * Given a piece of the paper containing the string:
+	 * "How much wood would a woodchuck chuck if a woodchuck could chuck wood?" when
+	 * the string "chuck" is erased, the paper should read:
+	 * "How much wood would a woodchuck chuck if a woodchuck could       wood?" and
+	 * if the string "chuck" is erased again, the paper should read:
+	 * "How much wood would a woodchuck chuck if a wood      could       wood?"
+	 */
+	Media erase(Media paper, String string);
+
 }
