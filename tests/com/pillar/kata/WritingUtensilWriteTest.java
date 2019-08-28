@@ -18,7 +18,7 @@ import com.pillar.kata.interfaces.WritingUtinsil;
  * August 21, 2019
  *
  */
-class WritingUtensilTest {
+class WritingUtensilWriteTest {
 
 	private Media paper;
 	private WritingUtinsil pencil;
