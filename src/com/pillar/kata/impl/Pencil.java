@@ -20,7 +20,16 @@ public class Pencil implements WritingUtinsil {
 	private static final int LOWER_CASE_COST = 1;
 	private static final int UPPER_CASE_COST = 2;
 	private static final char NO_POINT_CHAR = ' ';
+	private static final int ERASE_COST = 1;
 	private int length;
+	
+	/*
+	 * durability of pencil point as it writes- lowercase = -1, uppercase = -2
+	 */
+	private int pointDurability=Integer.MAX_VALUE;
+	private int pointDurabilityCount;
+	
+	private int eraseDurability;
 
 	
 	/**
@@ -38,7 +47,7 @@ public class Pencil implements WritingUtinsil {
 		this.length = length;
 		this.pointDurability = durability;
 		this.pointDurabilityCount = 0;
-	}
+	}	
 
 	//for testing code snippets
 	public static void main(String[] args) {
@@ -73,12 +82,6 @@ public class Pencil implements WritingUtinsil {
 		
 		
 	}
-	
-	/*
-	 * durability of pencil point as it writes- lowercase = -1, uppercase = -2
-	 */
-	private int pointDurability=Integer.MAX_VALUE;
-	private int pointDurabilityCount;
 
 	@Override
 	public Media write(Media paper, String content) {
@@ -171,6 +174,20 @@ public class Pencil implements WritingUtinsil {
 	 */
 	public int getPointDurabilityCount() {
 		return pointDurabilityCount;
+	}	
+
+	/**
+	 * @return the eraseDurability
+	 */
+	public int getEraseDurability() {
+		return eraseDurability;
+	}
+
+	/**
+	 * @param eraseDurability the eraseDurability to set
+	 */
+	public void setEraseDurability(int eraseDurability) {
+		this.eraseDurability = eraseDurability;
 	}
 
 	/**
@@ -184,16 +201,41 @@ public class Pencil implements WritingUtinsil {
 	public Media erase(Media paper, String word) {
 		
 		StringBuffer sb = new StringBuffer(paper.getContent());
-		//find last occurrence of word in String
-		int startIndex = sb.lastIndexOf(word);
-		int endIndex = startIndex + word.length();
+		//Calculate erase budget
+		int eraseBudget = word.length()-eraseDurability;
 		
-		char[] replacementWord = new char[word.length()];
+		System.out.println(eraseBudget);
+		
+		if(eraseBudget > 0 ) {	//deficit 		
+			eraseBudget = eraseDurability;
+		}else if(eraseBudget <= 0){//breakeven or surplus
+			//ok to erase whole word
+			eraseBudget = word.length();
+		}
+		
+		//find last occurrence of word in String
+		
+		int endIndex = sb.lastIndexOf(word) + (word.length()-1);//-1 to account for the index being -1 than the length
+		
+//		sb.setCharAt(sb.lastIndexOf(word), '*');
+		
+//		sb.setCharAt(endIndex, 'X');
+		System.out.println(sb.toString() + "," + eraseBudget);
+		
+		int startIndex = endIndex - eraseBudget;
+				
+		System.out.println(startIndex + "," + endIndex);
+		System.out.println(sb.substring(startIndex+1, endIndex+1));
+				
+		eraseDurability -= eraseBudget * ERASE_COST;
+		
+		char[] replacementWord = new char[eraseBudget];
 		
 		Arrays.fill(replacementWord, NO_POINT_CHAR);//create replacement empty space string
 		
-		StringBuffer sbResult = sb.replace(startIndex, endIndex, String.valueOf(replacementWord));
+		StringBuffer sbResult = sb.replace(startIndex+1, endIndex+1, String.valueOf(replacementWord));
 		
+		System.out.println(sbResult.toString());
 		//Create new paper object with new content
 		paper = new Paper();
 		paper.setContent(sbResult.toString());
