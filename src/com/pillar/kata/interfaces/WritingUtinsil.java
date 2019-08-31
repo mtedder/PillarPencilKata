@@ -100,6 +100,7 @@ public interface WritingUtinsil {
 	 * remaining on the paper is "Buffalo B   ".
 	 */	
 	void setEraseDurability(int i);
+	int getEraseDurability();
 	
 	
 

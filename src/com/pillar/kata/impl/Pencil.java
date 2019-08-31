@@ -208,7 +208,7 @@ public class Pencil implements WritingUtinsil {
 		
 		if(eraseBudget > 0 ) {	//deficit 		
 			eraseBudget = eraseDurability;
-		}else if(eraseBudget <= 0){//breakeven or surplus
+		}else {//breakeven or surplus
 			//ok to erase whole word
 			eraseBudget = word.length();
 		}

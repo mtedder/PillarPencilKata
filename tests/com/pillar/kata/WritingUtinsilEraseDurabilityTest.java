@@ -55,9 +55,13 @@ class WritingUtinsilEraseDurabilityTest {
 		paper = pencil.write(paper, "Buffalo Bill");//add content
 		
 		paper = pencil.erase(paper, "Bill");	
-		String actual = paper.getContent();			
+		String actual = paper.getContent();	
+		
+		int expectedEraseDurability = 0;
+		int actualEraseDurability = pencil.getEraseDurability();
 				
-		assertEquals(expected, actual, "testPencilEraseDurabilitySurplusEvenLowerCase Failed");
+		assertEquals(expected, actual, "testPencilEraseDurabilitySurplusEvenLowerCase #a Failed");
+		assertEquals(expectedEraseDurability, actualEraseDurability, "testPencilEraseDurabilitySurplusEvenLowerCase #b Failed");
 	}	
 
 }
