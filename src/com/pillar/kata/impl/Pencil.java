@@ -38,6 +38,7 @@ public class Pencil implements WritingUtinsil {
 	public Pencil() {
 		super();
 		this.pointDurabilityCount = 0;
+		this.eraseDurability = Integer.MAX_VALUE;
 	}
 
 	/*
@@ -48,6 +49,20 @@ public class Pencil implements WritingUtinsil {
 		this.pointDurability = durability;
 		this.pointDurabilityCount = 0;
 	}	
+
+	/**
+	 * @param length
+	 * @param pointDurability
+	 * @param pointDurabilityCount
+	 * @param eraseDurability
+	 */
+	public Pencil(int length, int pointDurability, int pointDurabilityCount, int eraseDurability) {
+		super();
+		this.length = length;
+		this.pointDurability = pointDurability;
+		this.pointDurabilityCount = pointDurabilityCount;
+		this.eraseDurability = eraseDurability;
+	}
 
 	//for testing code snippets
 	public static void main(String[] args) {
