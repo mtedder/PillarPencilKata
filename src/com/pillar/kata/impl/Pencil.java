@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import com.pillar.kata.interfaces.Media;
 import com.pillar.kata.interfaces.WritingUtinsil;
@@ -30,6 +31,7 @@ public class Pencil implements WritingUtinsil {
 	private int pointDurabilityCount;
 	
 	private int eraseDurability;
+	private String COLLISION_CHAR = "@";
 
 	
 	/**
@@ -252,16 +254,32 @@ public class Pencil implements WritingUtinsil {
 		
 		String content = paper.getContent();
 		StringBuffer sb = new StringBuffer(content);
+		StringBuffer wordSb = new StringBuffer(word);
 		
 		//use regex to find spaces
-		Pattern pSpace = Pattern.compile("[\\s]{2,}");// find spaces bigger than 1, if not found use first space.
+		Pattern pSpace = Pattern.compile("[\\s]{2,}");// find spaces bigger than 1 in length, if not found use first space.
 		Matcher mSpace = pSpace.matcher(content);
 		
-		System.out.println(mSpace.find());
-		System.out.println(mSpace.start());
+		mSpace.find();
 		int startIndex = mSpace.start() + 1;
 		int endIndex = startIndex + word.length();
 		
+		//Get subsection of content the same length as replacement text in paper
+		CharSequence textSubSection = sb.subSequence(startIndex, endIndex);
+		
+		//find indices of chars with non whitespace and replace with char collision character		
+		Pattern pSpace1 = Pattern.compile("[^\\s]");// single space
+		mSpace = pSpace1.matcher(textSubSection);
+		
+		textSubSection = mSpace.replaceAll(COLLISION_CHAR);
+		
+		//Merge the two text sections together and replace at their COLLISION_CHAR intersections
+		for(int i = 0; i < textSubSection.length(); i++) {
+			if(textSubSection.charAt(i) == COLLISION_CHAR.charAt(0)) {
+				wordSb.replace(i, i+1, COLLISION_CHAR);
+			}
+		}
+		word = wordSb.toString();
 		StringBuffer sbResult = sb.replace(startIndex, endIndex, word);
 		
 		//Create new paper object with new content

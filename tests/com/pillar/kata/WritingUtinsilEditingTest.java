@@ -40,7 +40,24 @@ class WritingUtinsilEditingTest {
 		paper = pencil.edit(paper, "onion");	
 		String actual = paper.getContent();
 		
-		assertEquals(expected, actual, "testPencilEditingBreakEvenCase Failed");
+		assertEquals(expected, actual, "testPencilEditingInsertCase Failed");
 	}
+	
+	@Test
+	void testPencilEditingInsertAndReplaceCase() {
+		String expected = "An artich@k@ay keeps the doctor away";		
+		
+		Media paper = new Paper();
+		WritingUtinsil pencil = new Pencil();
+		
+		pencil.setEraseDurability(100);
+		
+		paper = pencil.write(paper, "An       a day keeps the doctor away");//add content
+		
+		paper = pencil.edit(paper, "artichoke");	
+		String actual = paper.getContent();
+		
+		assertEquals(expected, actual, "testPencilEditingInsertAndReplaceCase Failed");
+	}	
 
 }
