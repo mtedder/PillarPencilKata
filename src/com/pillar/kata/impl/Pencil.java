@@ -219,8 +219,6 @@ public class Pencil implements WritingUtinsil {
 		//Calculate erase budget
 		int eraseBudget = word.length()-eraseDurability;
 		
-		System.out.println(eraseBudget);
-		
 		if(eraseBudget > 0 ) {	//deficit 		
 			eraseBudget = eraseDurability;
 		}else {//breakeven or surplus
@@ -232,15 +230,7 @@ public class Pencil implements WritingUtinsil {
 		
 		int endIndex = sb.lastIndexOf(word) + (word.length()-1);//-1 to account for the index being -1 than the length
 		
-//		sb.setCharAt(sb.lastIndexOf(word), '*');
-		
-//		sb.setCharAt(endIndex, 'X');
-		System.out.println(sb.toString() + "," + eraseBudget);
-		
 		int startIndex = endIndex - eraseBudget;
-				
-		System.out.println(startIndex + "," + endIndex);
-		System.out.println(sb.substring(startIndex+1, endIndex+1));
 				
 		eraseDurability -= eraseBudget * ERASE_COST;
 		
@@ -250,7 +240,6 @@ public class Pencil implements WritingUtinsil {
 		
 		StringBuffer sbResult = sb.replace(startIndex+1, endIndex+1, String.valueOf(replacementWord));
 		
-		System.out.println(sbResult.toString());
 		//Create new paper object with new content
 		paper = new Paper();
 		paper.setContent(sbResult.toString());
