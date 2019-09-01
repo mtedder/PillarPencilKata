@@ -130,5 +130,28 @@ class WritingUtinsilEraseDurabilityTest {
 		assertEquals(expected, actual, "testPencilEraseDurabilityBreakEvenTwoWordsLowerAndUpperCase #a Failed");
 		assertEquals(expectedEraseDurability, actualEraseDurability, "testPencilEraseDurabilityBreakEvenTwoWordsLowerAndUpperCase #b Failed");
 	}
+	
+	@Test
+	void testPencilEraseDurabilityDeficitTwoWordsLowerAndUpperCase() {
+		
+		String expected = "Buffalo Wil      ";		
+		
+		Media paper = new Paper();
+		WritingUtinsil pencil = new Pencil();
+		
+		pencil.setEraseDurability(5);
+		
+		paper = pencil.write(paper, "Buffalo Wild Bill");//add content
+		
+		paper = pencil.erase(paper, "Bill");
+		paper = pencil.erase(paper, "Wild");
+		String actual = paper.getContent();	
+		
+		int expectedEraseDurability = 0;
+		int actualEraseDurability = pencil.getEraseDurability();
+				
+		assertEquals(expected, actual, "testPencilEraseDurabilityDeficitTwoWordsLowerAndUpperCase #a Failed");
+		assertEquals(expectedEraseDurability, actualEraseDurability, "testPencilEraseDurabilityDeficitTwoWordsLowerAndUpperCase #b Failed");
+	}	
 
 }
