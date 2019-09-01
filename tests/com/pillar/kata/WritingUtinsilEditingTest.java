@@ -19,19 +19,24 @@ import com.pillar.kata.interfaces.WritingUtinsil;
  */
 class WritingUtinsilEditingTest {
 
+	private Media paper;
+	private WritingUtinsil pencil;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
+		paper = new Paper();
+		pencil = new Pencil();
 	}
 
 	@Test
 	void testPencilEditingInsertCase() {
 		String expected = "An onion a day keeps the doctor away";		
 		
-		Media paper = new Paper();
-		WritingUtinsil pencil = new Pencil();
+		paper = new Paper();
+		pencil = new Pencil();
 		
 		pencil.setEraseDurability(100);
 		
@@ -47,8 +52,8 @@ class WritingUtinsilEditingTest {
 	void testPencilEditingInsertAndReplaceCase() {
 		String expected = "An artich@k@ay keeps the doctor away";		
 		
-		Media paper = new Paper();
-		WritingUtinsil pencil = new Pencil();
+		paper = new Paper();
+		pencil = new Pencil();
 		
 		pencil.setEraseDurability(100);
 		
