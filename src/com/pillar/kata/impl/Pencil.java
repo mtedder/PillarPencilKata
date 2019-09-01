@@ -246,5 +246,29 @@ public class Pencil implements WritingUtinsil {
 		
 		return paper;
 	}
+
+	@Override
+	public Media edit(Media paper, String word) {
+		
+		String content = paper.getContent();
+		StringBuffer sb = new StringBuffer(content);
+		
+		//use regex to find spaces
+		Pattern pSpace = Pattern.compile("[\\s]{2,}");// find spaces bigger than 1, if not found use first space.
+		Matcher mSpace = pSpace.matcher(content);
+		
+		System.out.println(mSpace.find());
+		System.out.println(mSpace.start());
+		int startIndex = mSpace.start() + 1;
+		int endIndex = startIndex + word.length();
+		
+		StringBuffer sbResult = sb.replace(startIndex, endIndex, word);
+		
+		//Create new paper object with new content
+		paper = new Paper();
+		paper.setContent(sbResult.toString());
+		
+		return paper;
+	}
 		
 }

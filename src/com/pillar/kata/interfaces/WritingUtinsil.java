@@ -102,6 +102,25 @@ public interface WritingUtinsil {
 	void setEraseDurability(int i);
 	int getEraseDurability();
 	
+	/*
+	 * As a writer I want to be able to edit previously written text so that I can
+	 * change my writing without starting over
+	 * 
+	 * Once text has been erased from the paper, a pencil may be instructed to write
+	 * new text over the resulting white space. For instance, if the paper contains
+	 * the text "An       a day keeps the doctor away", a pencil can can be
+	 * instructed to write the word "onion" in the white space gap, so the text
+	 * reads "An onion a day keeps the doctor away".
+	 * 
+	 * Existing text on the page cannot 'shift' to make room for new text. If the
+	 * new text is longer than the allocated whitespace and thus would collide with
+	 * other existing non-whitespace characters on the page, these character
+	 * collisions should be represented by the "@" character. For example, writing
+	 * "artichoke" in the middle of "An       a day keeps the doctor away" would
+	 * result in "An artich@k@ay keeps the doctor away".
+	 */	
+	Media edit(Media paper, String word);
+	
 	
 
 }
