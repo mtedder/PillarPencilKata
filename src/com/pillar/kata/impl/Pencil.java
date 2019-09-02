@@ -4,7 +4,6 @@
 package com.pillar.kata.impl;
 
 import java.util.Arrays;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -66,40 +65,6 @@ public class Pencil implements WritingUtinsil {
 		this.eraseDurability = eraseDurability;
 	}
 
-	//for testing code snippets
-	public static void main(String[] args) {
-		String content = "testYZ";
-		Pattern p = Pattern.compile("[a-z&&[^\\s]]");// or \p{Lower}
-		Matcher mLower = p.matcher(content);
-//		int lowerCaseCount = 0;
-//		while(m.find()) {
-//			lowerCaseCount++;
-//		}
-		int pointDurability = 4;
-		for(int i=0; i < content.length(); i++) {
-			boolean isMatch = mLower.find(i);
-			int letterCost = 0;
-			if(isMatch) {//lowecase
-				letterCost = LOWER_CASE_COST;
-			}else {//non-lowercase
-				letterCost = UPPER_CASE_COST;
-			}
-			
-			if(pointDurability >= letterCost) {
-				System.out.println(String.valueOf(content.charAt(i)));
-			}else {//not enough pointDurability - print space
-				System.out.println("*");
-			}
-			
-			pointDurability -= letterCost;
-			//System.out.println(isMatch + ":" + content.charAt(i));
-		}
-		
-		//String tempContent = content.substring(0, lowerCaseCount);
-		
-		
-	}
-
 	@Override
 	public Media write(Media paper, String content) {
 				
@@ -115,20 +80,12 @@ public class Pencil implements WritingUtinsil {
 		Pattern pUpper = Pattern.compile("[A-Z&&[^\\s]]");// or \p{Upper}
 		Matcher mUpper = pUpper.matcher(content);
 		
-		//Spaces in content/input count
-		Pattern pSpace = Pattern.compile("\\s");//
-		Matcher mSpace = pSpace.matcher(content);
-
-		
 		//numbers & punctuation in content/input count
 		Pattern pNonLtrs = Pattern.compile("[\\p{Digit}\\p{Punct}]");//
 		Matcher mNonLtrs = pNonLtrs.matcher(content);
 			
 		char output;
-//		for(int i=0; i < content.length(); i++) {
 		for(char ch: content.toCharArray()) {
-//			boolean isMatch = mLower.find(i);
-//			boolean isSpaceMatch = mSpace.find(i);
 			boolean isMatch = Pattern.matches("[a-z&&[^\\s]]", String.valueOf(ch));
 			boolean isSpaceMatch  = Pattern.matches("\\s",  String.valueOf(ch));
 			
@@ -279,8 +236,8 @@ public class Pencil implements WritingUtinsil {
 				wordSb.replace(i, i+1, COLLISION_CHAR);
 			}
 		}
-		word = wordSb.toString();
-		StringBuffer sbResult = sb.replace(startIndex, endIndex, word);
+		
+		StringBuffer sbResult = sb.replace(startIndex, endIndex, wordSb.toString());
 		
 		//Create new paper object with new content
 		paper = new Paper();
