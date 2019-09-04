@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.pillar.kata.impl;
+package main.java.com.pillar.kata.impl;
 
-import com.pillar.kata.interfaces.Media;
+import main.java.com.pillar.kata.interfaces.Media;
 
 /**
  * @author Maurice Tedder

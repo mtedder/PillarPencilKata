@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pillar.kata.interfaces;
+package main.java.com.pillar.kata.interfaces;
 
 /**
  * @author Maurice Tedder

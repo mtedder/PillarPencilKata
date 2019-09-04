@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.pillar.kata;
+package test.java.com.pillar.kata;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.pillar.kata.impl.Paper;
-import com.pillar.kata.impl.Pencil;
-import com.pillar.kata.interfaces.Media;
-import com.pillar.kata.interfaces.WritingUtinsil;
+import main.java.com.pillar.kata.impl.Paper;
+import main.java.com.pillar.kata.impl.Pencil;
+import main.java.com.pillar.kata.interfaces.Media;
+import main.java.com.pillar.kata.interfaces.WritingUtinsil;
 
 /**
  * @author Maurice Tedder

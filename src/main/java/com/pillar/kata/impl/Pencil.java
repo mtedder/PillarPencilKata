@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.pillar.kata.impl;
+package main.java.com.pillar.kata.impl;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
-import com.pillar.kata.interfaces.Media;
-import com.pillar.kata.interfaces.WritingUtinsil;
+import main.java.com.pillar.kata.interfaces.Media;
+import main.java.com.pillar.kata.interfaces.WritingUtinsil;
 
 /**
  * @author Maurice Tedder

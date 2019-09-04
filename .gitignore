@@ -1,19 +1,5 @@
-# Eclipse
-.classpath
-.project
-.settings/
+# Ignore Gradle project-specific cache directory
+.gradle
 
-# Intellij
-.idea/
-*.iml
-*.iws
-
-# Mac
-.DS_Store
-
-# Maven
-log/
-target/
-
-*.class
-/bin
+# Ignore Gradle build output directory
+build
